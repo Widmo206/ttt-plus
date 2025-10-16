@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgru37q2cxbsi"]
+
+[ext_resource type="Texture2D" uid="uid://cyu18hsketbmh" path="res://circle.png" id="1_hisf2"]
+[ext_resource type="Script" uid="uid://clc6b5whph1eg" path="res://piece.gd" id="1_sk825"]
+[ext_resource type="Texture2D" uid="uid://c1naljbv17uk4" path="res://cross.png" id="2_sk825"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1xrd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hisf2")
+}],
+"loop": true,
+"name": &"circle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sk825")
+}],
+"loop": true,
+"name": &"cross",
+"speed": 5.0
+}]
+
+[node name="Piece" type="Node2D"]
+script = ExtResource("1_sk825")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y1xrd")
+animation = &"circle"
