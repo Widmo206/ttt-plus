@@ -15,11 +15,12 @@ signal turn_started(player: bool)
 
 
 var directions = [
-	Vector2(0, 1),
 	Vector2(1, 1),
 	Vector2(1, 0),
-	Vector2(1, -1)
-	]
+	Vector2(1, -1),
+	Vector2(0, -1),
+]
+
 
 var colors = {
 	true: Color(1.000, 0.490, 0.000),
@@ -50,11 +51,13 @@ func _process(delta: float) -> void:
 					emit_signal("point_gained", current_player)
 					
 					var line = Line2D.new()
+					line.add_point((win[0]  + 0.25*direction) * 32)
+					line.add_point((win[-1] - 0.25*direction) * 32)
+					line.default_color = colors[current_player]
+					
 					for piece in win:
 						# update state of relevant pieces
 						board[piece].blocked_directions.append(direction)
-						line.add_point(piece*32) # + Vector2(16, 16))
-						line.default_color = colors[current_player]
 					
 					add_child(line)
 	
@@ -62,6 +65,15 @@ func _process(delta: float) -> void:
 			
 			current_player = !current_player
 			emit_signal("turn_started", current_player)
+
+
+func _sort_piece_positions(piece1: Vector2, piece2: Vector2) -> bool:
+	if piece1.x > piece2.x:
+		return true
+	elif piece1.x == piece2.x:
+		return piece1.y < piece2.y
+	else:
+		return false
 
 
 func create_new_piece(tile_pos: Vector2, player: bool):
@@ -94,6 +106,7 @@ func find_win(direction: Vector2, player: bool, last_move: Vector2) -> Array:
 				# not bundled with other conditions
 				# because it's just here to prevent miscounting
 				pieces.append(current_pos)
+			
 		else:
 			if reversed:
 				# tried both sides, no win found
@@ -104,6 +117,7 @@ func find_win(direction: Vector2, player: bool, last_move: Vector2) -> Array:
 				# reached end, try other side
 				reversed = true
 				continue
-	
+				
+	pieces.sort_custom(_sort_piece_positions)
 	print(pieces)
 	return pieces
