@@ -1,20 +1,20 @@
 extends Node2D
 
 
-enum Type {circle, cross}
+enum Player {circle, cross}
 var sprites = ["circle", "cross"]
 
+var blocked_directions: Array
+var player = Player.circle
 
-var type = Type.circle
 
-
-func set_type(new_type: Type):
-	type = new_type
+func set_player(new_player: Player):
+	player = new_player
 	update_animation()
 
 
 func update_animation() -> void:
-	$Sprite.animation = sprites[type]
+	$Sprite.animation = sprites[player]
 
 
 func _ready() -> void:
