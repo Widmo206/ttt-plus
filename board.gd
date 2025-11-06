@@ -33,7 +33,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("play"):
 		var pos = get_global_mouse_position()
-		var tile_pos = floor(pos / 32)
+		var tile_pos = floor((pos + Vector2(16, 16)) / 32)
 		
 		if tile_pos in board.keys():
 			# print("tile %v is occupied" % tile_pos)
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 					for piece in win:
 						# update state of relevant pieces
 						board[piece].blocked_directions.append(direction)
-						line.add_point(piece*32 + Vector2(16, 16))
+						line.add_point(piece*32) # + Vector2(16, 16))
 						line.default_color = colors[current_player]
 					
 					add_child(line)
@@ -70,7 +70,7 @@ func create_new_piece(tile_pos: Vector2, player: bool):
 	new_piece.blocked_directions = []
 	
 	add_child(new_piece)
-	new_piece.position = tile_pos*32 + Vector2(16, 16)
+	new_piece.position = tile_pos*32 #+ Vector2(16, 16)
 	board[tile_pos] = new_piece
 
 
