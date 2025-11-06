@@ -15,8 +15,14 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	$Scoreboard/Score1.text = "o - %d" % points[false]
+	$Scoreboard/Score2.text = "x - %d" % points[true]
+
+
+func _on_turn_started(player):
+	$TurnIndicator.set_player(player)
 
 
 func _on_point_gained(player: bool) -> void:
 	points[player] += 1
+	

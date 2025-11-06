@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b77utuen6qqm7"]
+
+[ext_resource type="FontFile" uid="uid://uwh5it40g4rf" path="res://nk57-monospace.cdrg-bold.otf" id="1_e43yp"]
+
+[resource]
+default_font = ExtResource("1_e43yp")

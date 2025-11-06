@@ -11,6 +11,7 @@ var current_player = false
 
 
 signal point_gained(player: bool)
+signal turn_started(player: bool)
 
 
 var directions = [
@@ -60,6 +61,7 @@ func _process(delta: float) -> void:
 					
 			
 			current_player = !current_player
+			emit_signal("turn_started", current_player)
 
 
 func create_new_piece(tile_pos: Vector2, player: bool):
