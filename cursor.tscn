@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfm1qnc7h2k4h"]
+
+[ext_resource type="Script" uid="uid://ci764sibq0201" path="res://cursor.gd" id="1_5l68f"]
+[ext_resource type="PackedScene" uid="uid://dgru37q2cxbsi" path="res://piece.tscn" id="1_fsq4c"]
+
+[node name="Cursor" type="Node2D"]
+script = ExtResource("1_5l68f")
+
+[node name="Piece" parent="." instance=ExtResource("1_fsq4c")]
+modulate = Color(0.64, 0.64, 0.64, 0.37254903)
+z_index = 1

@@ -119,5 +119,5 @@ func find_win(direction: Vector2, player: bool, last_move: Vector2) -> Array:
 				continue
 				
 	pieces.sort_custom(_sort_piece_positions)
-	print(pieces)
+	# print(pieces)
 	return pieces
